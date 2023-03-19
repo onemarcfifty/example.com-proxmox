@@ -71,5 +71,5 @@ docker exec imap /etc/init.d/postfix reload
 # that's not secure for production environments but should be helpful here
 # in order to ssh into the docker host if ever we need to copy the certificates
 # for example. The host is not reachable from the outside world anyhow.
-sed -i s/\#PermitRootLogin\ prohibit-password$/PermitRootLogin\ yes/ Etc/ssh/sshd_config
+sed -i s/\#PermitRootLogin\ prohibit-password$/PermitRootLogin\ yes/ /etc/ssh/sshd_config
 systemctl restart sshd
