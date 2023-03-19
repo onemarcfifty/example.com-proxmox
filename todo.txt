@@ -1,0 +1,19 @@
+copy certs to the containers and VMs
+- client
+- Docker
+- Portainer
+- IMAP
+- Router
+
+Router settings
+- Domain example.com
+- MX entry
+- CNAME entry mail, imap, SMTP
+- password
+
+Client settings
+- Mail account
+- certs
+    - machine
+    - Thunderbird
+    - Firefox

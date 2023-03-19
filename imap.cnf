@@ -1,0 +1,23 @@
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+req_extensions = req_ext
+
+[dn]
+C = DE
+O = onemarcfifty
+emailAddress = admin@example.com
+CN = imap.example.com
+
+[req_ext]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = imap.example.com
+DNS.2 = imap
+DNS.3 = smtp.example.com
+DNS.4 = smtp
+DNS.5 = mail.example.com
+DNS.6 = mail

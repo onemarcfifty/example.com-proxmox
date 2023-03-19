@@ -1,0 +1,49 @@
+# ###################################
+# general config for the 
+# example.com Sandbox
+# ###################################
+
+# the "virtual WAN" - this is the network
+# going to the internet, i.e. your "normal"
+# Proxmox Network, by default it's vmbr0
+
+WAN=vmbr0
+
+# the "virtual LAN" - this is the network
+# that your example.com domain will run in,
+# i.e. the "encapsulated" network
+# that you created as a preparation step
+
+LAN=vmbr111
+
+# The domain that you want to have inside 
+# your virtual world
+
+DOMAIN=example.com
+
+# The storage where your containers shall reside
+# e.g. local or local-lvm or local-disc etc.
+
+STORAGE=local-lvm
+
+# CTTEMPLATE is the name of the template to use
+
+TEMPLATENAME=debian-11-standard_11.6-1_amd64.tar.zst
+TEMPLATESTORAGE=local
+
+# CTID contains a list of Container/VM IDs to use
+
+CTID=701,702,703
+
+# OPENWRTURL contains the URL for the OpenWrt Image to use.
+
+OPENWRTURL="https://downloads.openwrt.org/releases/22.03.3/targets/x86/64/openwrt-22.03.3-x86-64-generic-ext4-combined.img.gz"
+
+# the ROUTERIP is used later by the client Script in order to connect to the 
+# router and do the necessary changes. Change it here if needed. 
+# Furthermore, after the first installation step (when the script halts in order to
+# let you check the router's internet connection), log into the router shell
+# from the Proxmox GUI and run
+# uci set network.lan.ipaddr='x.x.x.x' ; uci commit ; reboot
+
+ROUTERIP=192.168.1.1
