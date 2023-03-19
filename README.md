@@ -48,6 +48,24 @@ Create a virtual network for your test "sandbox" that is connected nowhere (i.e.
 The installation can be done automatically. 
 Run the following command (as root) on the PVE Server:
 
+If you have git installed on your Proxmox Server, you can run 
+
+```bash
+git clone https://github.com/onemarcfifty/example.com-proxmox.git
+```
+
+If not, then you could download and unzip the repo by typing 
+
+```bash
+wget https://github.com/onemarcfifty/example.com-proxmox/archive/refs/heads/main.zip
+unzip main.zip
+```
+
+then cd into the subfolder, review and adapt the config file and launch
+```bash
+./deploy-sandbox.sh
+```
+
 ### More Info
 
 
