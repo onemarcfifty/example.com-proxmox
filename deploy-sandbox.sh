@@ -148,7 +148,8 @@ echo -e "\n ##### configuring the containers \n"
 
 # create a non-root user
 pct exec $CLIENTID -- useradd -m -s /bin/bash -G sudo $NONROOTUSER
-pct exec $CLIENTID -- bash -c "echo -e '$NONROOTPASSWD\n$NONROOTPASSWD\n' | passwd $NONROOTUSER"
+#pct exec $CLIENTID -- bash -c "echo -e '$NONROOTPASSWD\n$NONROOTPASSWD\n' | passwd $NONROOTUSER"
+pct exec $CLIENTID -- bash -c "echo '$NONROOTUSER:$NONROOTPASSWD' | chpasswd"
 
 # push dhcp settings to avoid routing over the ingress interface
 pct push $CLIENTID exc-client/dhclient.conf /etc/dhcp/dhclient.conf

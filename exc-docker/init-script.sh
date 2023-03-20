@@ -55,6 +55,7 @@ docker compose create
 # copy certificates to the docker cert volume
 docker cp /etc/certificates/${DOMAIN}/imap_fullchain.crt imap:/etc/ssl/certs/ssl-cert-imap.pem
 docker cp /etc/certificates/${DOMAIN}/imap.key imap:/etc/ssl/private/ssl-cert-imap.key
+docker cp /etc/certificates/${DOMAIN}/rootCA.crt imap:/etc/ssl/certs/rootCA.pem
 
 # bring up the mail server
 docker compose up -d
@@ -65,6 +66,7 @@ sleep 10
 # just fix the certificate location for postfix
 docker exec imap postconf -e smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-imap.pem
 docker exec imap postconf -e smtpd_tls_key_file=/etc/ssl/private/ssl-cert-imap.key 
+docker exec imap postconf -e smtp_tls_CApath=/etc/ssl/certs/rootCA.pem
 docker exec imap /etc/init.d/postfix reload
 
 # last but not least let's enable root ssh access with username and password.
