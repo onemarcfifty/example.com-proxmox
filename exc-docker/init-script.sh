@@ -31,6 +31,9 @@ cp /etc/certificates/${DOMAIN}/rootCA.crt /etc/ssl/certs
 ln -s /etc/ssl/certs/rootCA.crt /etc/ssl/certs/`openssl x509 -hash -noout -in rootCA.crt`.0
 # this will update the /etc/ssl/certs/ca-certificates.crt
 update-ca-certificates
+# actually after more testing it turned out that we will still need to append the
+# root CA to the file:
+cat /etc/ssl/certs >>/etc/ssl/certs/ca-certificates.crt
 
 # now we can install portainer
 docker pull portainer/portainer-ce:latest
