@@ -44,7 +44,7 @@ docker run -d -p 9000:9000 -p 9443:9443 \
        portainer/portainer-ce:latest \
        --sslcert /certs/wildcard_fullchain.crt \
        --sslkey /certs/wildcard.key \
-       --tlscacert /cert/rootCA.crt
+       --tlscacert /certs/rootCA.crt
 # little tip: in order to debug portainer behavior, add --log-level=DEBUG
 
 # let's add portainer agent as well in case you already have an existing portainer somewhere
