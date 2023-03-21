@@ -20,6 +20,18 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 apt update
 apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
 
+# Portainer does not seem to honor the --tlscacert flag correctly. That will
+# become apparent when you try to do OIDC SSO with self-signed certificates or the like.
+# as a workaround, we install the Root CA on the Docker host and later mount the modified 
+# /etc/ssl/certs/ca-certificates.crt to the Container.
+
+# we copy the root CA into the openssl cert folder
+cp /etc/certificates/${DOMAIN}/rootCA.crt /etc/ssl/certs
+# create the hash link
+ln -s /etc/ssl/certs/rootCA.crt /etc/ssl/certs/`openssl x509 -hash -noout -in rootCA.crt`.0
+# this will update the /etc/ssl/certs/ca-certificates.crt
+update-ca-certificates
+
 # now we can install portainer
 docker pull portainer/portainer-ce:latest
 docker run -d -p 9000:9000 -p 9443:9443 \
@@ -28,10 +40,13 @@ docker run -d -p 9000:9000 -p 9443:9443 \
        -v /var/run/docker.sock:/var/run/docker.sock \
        -v portainer_data:/data \
        -v /etc/certificates/${DOMAIN}:/certs \
+       -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt \
        portainer/portainer-ce:latest \
        --sslcert /certs/wildcard_fullchain.crt \
-       --sslkey /certs/wildcard.key 
-       
+       --sslkey /certs/wildcard.key \
+       --tlscacert /cert/rootCA.crt
+# little tip: in order to debug portainer behavior, add --log-level=DEBUG
+
 # let's add portainer agent as well in case you already have an existing portainer somewhere
 docker run -d -p 9001:9001 \
         --name portainer_agent \
