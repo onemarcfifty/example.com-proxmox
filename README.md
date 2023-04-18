@@ -1,5 +1,7 @@
 ## example.com domain on Proxmox
 
+![language](https://img.shields.io/github/languages/top/onemarcfifty/example.com-proxmox)    ![License](https://img.shields.io/github/license/onemarcfifty/example.com-proxmox)    ![Last Commit](https://img.shields.io/github/last-commit/onemarcfifty/example.com-proxmox)     ![FileCount](https://img.shields.io/github/directory-file-count/onemarcfifty/example.com-proxmox)    ![Stars](https://img.shields.io/github/stars/onemarcfifty/example.com-proxmox)    ![Forks](https://img.shields.io/github/forks/onemarcfifty/example.com-proxmox)
+
 ### What?
 
 With these scripts you can install a complete example.com domain for testing purposes on your proxmox server. This includes:
@@ -68,4 +70,4 @@ then cd into the subfolder, review and adapt the config file and launch
 
 ### More Info
 
-
+The whole process is described in [This video on my youtube channel](https://www.youtube.com/watch?v=jZjysgVk9wU)
